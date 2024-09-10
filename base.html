@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive CV</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        img {
+            width: 50%;
+			height: auto;  /* Adjust this based on how large you want the image, make scaled image? */
+            max-width: 1000px;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            padding: 20px;
+            background-color: white;
+            border: 2px solid #043138;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+			max-width: 300px;
+        }
+
+		.gif-container {
+			display: none; /* initially hidden */
+			position: absolute;
+			z-index: 1000:			
+		}
+
+		.gif-container img {
+			width: 30px;
+			height: auto;
+		}
+
+    </style>
+</head>
+<body>
+
+    <h1>Hello, it's me, Inka!</h1>
+
+    <!-- Image with clickable areas -->
+    <img src="cv.jpg" alt="My CV" usemap="#cv-map">
+
+    <!-- Define clickable areas on the image -->
+    <map name="cv-map">
+		<area shape="rect" coords="70,70,150,150" alt="About me" onclick="showPopup('aboutMe')"
+			onmouseover="showGif()" onemouseout="hideGif()">
+		<area shape="rect" coords="250,250,350,350" alt="My Game" onclick="showPopup('gamePopup')"
+			onmouseover="showGif()" onemouseout="hideGif()">		
+		<area shape="rect" coords="400,100,600,100" alt="More Info" onclick="showPopup('infoPopup')"onmouseover="showGif()" onemouseout="hideGif()"
+			onmouseover="showGif()" onemouseout="hideGif()">
+	</map>
+
+	<!-- GIF settings to hover  -->
+	<div id="gifContainer" class="gif-container">
+		<img src="dot1.gif" alt="Animated GIF">
+	</div>
+	
+    <!-- Pop-up windows for content -->
+
+	<div id="aboutMe" class="popup">
+        <h2>Me in a nutshell</h2>
+        <p>This is where I’ll tell some stuff about me and my life.</p>
+        <button onclick="hidePopup('aboutMe')">Close</button>
+    </div>
+
+    <div id="gamePopup" class="popup">
+        <h2>My Game</h2>
+        <p>This is where I’ll add my Piggy game.</p>
+        <button onclick="hidePopup('gamePopup')">Close</button>
+    </div>
+
+    <div id="infoPopup" class="popup">
+        <h2>More Info</h2>
+        <p>This is a place for all job experience .</p>
+        <button onclick="hidePopup('infoPopup')">Close</button>
+    </div>
+
+	<div id="extrasPopup" class="popup">
+        <h2>sukanvarsi</h2>
+        <p>This is a place for all the cool extra stuff I've done in life .</p>
+        <button onclick="hidePopup('extrasPopup')">Close</button>
+    </div>
+
+	<!-- Add the image map resizer script -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+	<script>
+		// initalize image map resize on load
+		window.onload = function() {
+			imageMapResize();
+		};
+
+		// Show gif
+		function showGif() {
+			const gifContainer = document.getElementById('gifContainer');
+			gifContainer.style.display = 'block';
+			gifContainer.style.top = '70px'; //adjust position
+			gifContainer.style.left = '150px'; //adjust position
+		}
+
+		//hide gif
+		function hideGif() {
+			document.getElementById('gifContainer').style.display = 'none';
+		}
+
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+
+        function hidePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
